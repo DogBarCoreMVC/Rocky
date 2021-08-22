@@ -35,9 +35,9 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken] //ความปลอดภัย
         public IActionResult Create(Category Obj)
         { 
-            _db.CategoryTbl.Add(Obj);//รับข้อมูลจาก Object ด้วย Method Add
+            _db.CategoryTbl.Add(Obj);//รับข้อมูลจาก Object Obj ด้วย Method Add
             _db.SaveChanges();//บันทึกลง DataBase
-            return View();
+            return RedirectToAction("Index");//ทำการเปลี่ยนเส้นทางให้กลับไปที่ Method Index เพื่อทำการแสดงข้อมูล
         }
     }
 }
