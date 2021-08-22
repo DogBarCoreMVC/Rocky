@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rocky.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,8 @@ namespace Rocky
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectDefault")));
+            //base(options) ที่อยู่ใน Class ApplicationDbContext จะเข้ามาทำงานใน options และใช้งาน Method UseSqlServer เพราะเราต้องการ Connect DataBase SqlServer และเรียกใช้งาน Configuration ที่เป็น Object และ GetConnectionString โดยส่ง "ConnectDefault" เป็น ConnectionString ที่เรากำหนดไว้แล้ว ใน appsetting.json
             services.AddControllersWithViews();
         }
 
