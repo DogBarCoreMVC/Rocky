@@ -3,7 +3,7 @@
 <form method="post" asp-action="Create">
 
     <div class="border p-3">
-
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
         <div class="form-group row">
             <h2 class="text-info pl-3">Add Category</h2>
         </div>
@@ -16,7 +16,8 @@
                         <label asp-for="CategoryName"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="CategoryName" class="form-control"/>
+                        <input asp-for="CategoryName" class="form-control" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -26,26 +27,35 @@
                     </div>
                     <div class="col-8">
                         <input asp-for="DisplayOrder" class="form-control" />
+                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-8 offset-4 row">
-                    <div class="col">
-                        <input type="submit" class="btn btn-primary w-100" value="Create" />
-                    </div>
-                    <div class="col">
-                        <a asp-action="Index" class="btn btn-success w-100">Back</a>
-                    </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary w-100" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
-        <div class="col-4">
-            @*Keep this empty*@
-        </div>
+            <div class="col-4">
+                @*Keep this empty*@
+            </div>
 
-     </div>
-   </div>
+        </div>
+    </div>
 </form>
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <!--ใช้ javaScript ในการตรวจสอบข้อมูลที่กรอกเข้ามา ว่าถูกต้องหรือเปล่า-->
+}

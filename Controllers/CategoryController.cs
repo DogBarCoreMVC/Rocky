@@ -34,10 +34,14 @@ namespace Rocky.Controllers
         [HttpPost] //กำหนด attribute เพื่อใช้ในการรับข้อมูล
         [ValidateAntiForgeryToken] //ความปลอดภัย
         public IActionResult Create(Category Obj)
-        { 
-            _db.CategoryTbl.Add(Obj);//รับข้อมูลจาก Object Obj ด้วย Method Add
-            _db.SaveChanges();//บันทึกลง DataBase
-            return RedirectToAction("Index");//ทำการเปลี่ยนเส้นทางให้กลับไปที่ Method Index เพื่อทำการแสดงข้อมูล
+        {
+            if (ModelState.IsValid)//ตรวจสอบข้อมูลที่รับเข้ามาต้องครบถ้วย ถ้สไม่ครบจะไม่เข้าเงื่อนไข
+            {
+                _db.CategoryTbl.Add(Obj);//รับข้อมูลจาก Object Obj ด้วย Method Add
+                _db.SaveChanges();//บันทึกลง DataBase
+                return RedirectToAction("Index");//ทำการเปลี่ยนเส้นทางให้กลับไปที่ Method Index เพื่อทำการแสดงข้อมูล
+            }
+            return View(Obj);
         }
     }
 }
