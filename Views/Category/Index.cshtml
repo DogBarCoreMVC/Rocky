@@ -1,42 +1,53 @@
 ﻿@model IEnumerable<Rocky.Models.Category>
     <!--IEnumerable เป็นหมวดหมู่ที่นับได้ หรือ List / เป็นการบอกเส้นทางของข้อมูล <Rocky.Models.Category> -->
 
+@{ ViewData["Title"] = "Index"; }
+
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Category List</h2>
+            <h2 class="text-primary">Categories Data</h2>
         </div>
         <div class="col-6 text-right">
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-               Create New Category
+                Add Categories
             </a>
-           
         </div>
     </div>
 
     <br /><br />
-
-        <table class="table-bordered table-striped" style="width:100%">
-            <thead>
+    <table class="table-bordered table-striped text-center" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    <div>
+                        Categories Product
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        Number Categories
+                    </div>
+                </th>
+                <th>
+                    Edit or Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CategoryName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DisplayOrder)
-                    </th>
-                    <th></th>
+                    <td width="50%">@Html.DisplayFor(ModelItem => item.CategoryName)</td>
+                    <td width="30%">@Html.DisplayFor(ModelItem => item.DisplayOrder)</td>
+                    <td>
+                        <div class="btn btn-group w-100">
+                            <a asp-controller="Category" asp-route-id="@item.Id" asp-action="Edit" class="btn btn-primary mx-1">Edit</a>
+                            <a asp-controller="Category" asp-route-id="@item.Id" asp-action="Delete" class="btn btn-danger mx-1">Delete</a>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td width="50%" height="50px">@Html.DisplayFor(ModelItem => item.CategoryName)</td>
-                            <td width="30%" height="50px">@Html.DisplayFor(ModelItem => item.DisplayOrder)</td>
-                            <td></td>
-                        </tr>
-                    }
-                </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 </div>

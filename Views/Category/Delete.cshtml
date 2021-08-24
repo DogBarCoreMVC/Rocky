@@ -1,13 +1,13 @@
 ﻿@model Rocky.Models.Category
 
-@{ ViewData["Title"] = "Create"; }
+@{ ViewData["Title"] = "Delete"; }
 
-<form method="post" asp-action="Create">
+<form method="post">
 
     <div class="border p-3">
-        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <input asp-for="Id" hidden/>@*ทำการรับค่า Id ที่เราต้องการลบ เพื่อให้การลบนั้นถูกต้องไม่ error*@
         <div class="form-group row">
-            <h2 class="text-info pl-3">Add Category</h2>
+            <h2 class="text-info pl-3">Edit</h2>
         </div>
 
         <div class="row">
@@ -18,8 +18,7 @@
                         <label asp-for="CategoryName"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="CategoryName" class="form-control" />
-                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        <input asp-for="CategoryName" disabled class="form-control" />
                     </div>
                 </div>
 
@@ -28,15 +27,14 @@
                         <label asp-for="DisplayOrder"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="DisplayOrder" class="form-control" />
-                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                        <input asp-for="DisplayOrder" disabled class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-8 offset-4 row">
                         <div class="col">
-                            <input type="submit" class="btn btn-primary w-100" value="Create" />
+                            <input type="submit" asp-action="Deleted" class="btn btn-danger w-100" value="Delete" />
                         </div>
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">Back</a>
@@ -53,11 +51,3 @@
         </div>
     </div>
 </form>
-
-@section Scripts
-{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-    <!--ใช้ javaScript ในการตรวจสอบข้อมูลที่กรอกเข้ามา ว่าถูกต้องหรือเปล่า-->
-}
