@@ -2,10 +2,11 @@
 
 @{ ViewData["Title"] = "Delete"; }
 
-<form method="post">
+<form method="post" asp-action="Deleted">
+    @*asp-action="Deleted เวลากดปุ่ม Delete ให้มาทำงานใน Method Deleted*@
 
     <div class="border p-3">
-        <input asp-for="Id" hidden/>@*ทำการรับค่า Id ที่เราต้องการลบ เพื่อให้การลบนั้นถูกต้องไม่ error*@
+        <input asp-for="Id" hidden />@*ทำการรับค่า Id ที่เราต้องการลบ เพื่อให้การลบนั้นถูกต้องไม่ error*@
         <div class="form-group row">
             <h2 class="text-info pl-3">Edit</h2>
         </div>
@@ -34,7 +35,7 @@
                 <div class="form-group row">
                     <div class="col-8 offset-4 row">
                         <div class="col">
-                            <input type="submit" asp-action="Deleted" class="btn btn-danger w-100" value="Delete" />
+                            <input type="submit" class="btn btn-danger w-100" value="Delete" />
                         </div>
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">Back</a>
