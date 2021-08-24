@@ -73,6 +73,7 @@ namespace Rocky.Controllers
             return View(CatEdit);
         }
 
+       
         public IActionResult Delete(int? id)
         {
             if(id == null || id ==0)
